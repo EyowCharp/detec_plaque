@@ -4,8 +4,7 @@ OpenCV + Python uniquement, aucune bibliothèque d'OCR : chaque étape vient du 
 
 ## Lancer
 ```
-python lecture.py images/voitures/voiture_01.jpg     # chaîne complète, affiche les étapes
-python test_lecture.py                               # teste les 3 photos, compare avant / après
+python ahmed_partieBC.py images/voitures/voiture_01.jpg     # chaîne complète, affiche les étapes
 ```
 Touche quelconque dans une fenêtre pour quitter.
 
@@ -13,11 +12,10 @@ Touche quelconque dans une fenêtre pour quitter.
 | Partie | Étapes | Fichier |
 |---|---|---|
 | A — trouver la plaque | 1 charger/redimensionner · 2 gris · 3 filtre bilatéral · 4 Canny · 5 findContours · 6 candidats (minAreaRect, ratio) · redressement (warpPerspective) · choix par nombre de caractères | `lucas_partieA.py` |
-| B — isoler les caractères | 7 Otsu inversé + floodFill (efface le cadre) · 8 findContours (RETR_EXTERNAL) + tri par x + filtre de hauteur · 9 normalisation 30×60 | `lecture.py`, `normalisation.py` |
-| C — reconnaître | 10 comparaison aux 33 modèles (IoU) · 11 format AA-123-AA (position -> alphabet autorisé, sans I, O, U) · 12 affichage | `lecture.py` |
+| B — isoler les caractères | 7 Otsu inversé + floodFill (efface le cadre) · 8 findContours (RETR_EXTERNAL) + tri par x + filtre de hauteur · 9 normalisation 30×60 | `ahmed_partieBC.py` |
+| C — reconnaître | 10 comparaison aux 33 modèles (IoU) · 11 format AA-123-AA (position -> alphabet autorisé, sans I, O, U) · 12 affichage | `ahmed_partieBC.py` |
 
-Modèles : `creer_modeles_ratio.py` dessine les 33 caractères (police Liberation Sans Bold, équivalent libre d’Arial, proche des plaques
-« bâtons ») avec la MÊME normalisation que les caractères lus -> `modeles_ratio/`.
+Modèles : les 33 caractères de `modeles_ratio/`, dessinés en police Liberation Sans Bold (équivalent libre d’Arial, proche des plaques « bâtons »), avec la MÊME normalisation que les caractères lus.
 
 ## Résultats (3 photos de test : voiture_01, 02, 03 — 21 caractères)
 | Méthode | Caractères justes |
